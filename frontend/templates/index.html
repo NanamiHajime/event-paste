@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}イベント登録 | Event Tweeter{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">イベント登録フォーム</h1>
+<form method="post" action="/events" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div class="form-control">
+    <label class="label" for="name"><span class="label-text">イベント名</span></label>
+    <input type="text" id="name" name="name" class="input input-bordered" />
+  </div>
+  <div class="form-control">
+    <label class="label" for="start_date"><span class="label-text">日付</span></label>
+    <input type="date" id="start_date" name="start_date" class="input input-bordered" />
+  </div>
+  <div class="form-control">
+    <label class="label" for="start_at"><span class="label-text">開始時刻</span></label>
+    <input type="time" id="start_at" name="start_at" class="input input-bordered" />
+  </div>
+  <div class="form-control">
+    <label class="label" for="price"><span class="label-text">Price</span></label>
+    <input type="number" id="price" name="price" class="input input-bordered" />
+  </div>
+  <div class="form-control col-span-2">
+    <label class="cursor-pointer label">
+      <span class="label-text">1ドリンク込み</span>
+      <input type="checkbox" name="with_1d" class="checkbox ml-2" />
+    </label>
+  </div>
+  <div class="form-control">
+    <label class="label" for="venue"><span class="label-text">会場名</span></label>
+    <input type="text" id="venue" name="venue" class="input input-bordered" />
+  </div>
+  <div class="form-control">
+    <label class="label" for="address"><span class="label-text">住所</span></label>
+    <input type="text" id="address" name="address" class="input input-bordered" />
+  </div>
+  <div class="form-control col-span-2">
+    <label class="label" for="hashtag"><span class="label-text">シャープ抜きハッシュタグ (例: AniClub)</span></label>
+    <input type="text" id="hashtag" name="hashtag" class="input input-bordered" />
+  </div>
+  <div class="form-control col-span-2">
+    <label class="label" for="description"><span class="label-text">説明文</span></label>
+    <textarea id="description" name="description" class="textarea textarea-bordered" rows="3"></textarea>
+  </div>
+  <div class="form-control col-span-2" x-data="{ djs: [''] }">
+    <label class="label"><span class="label-text">DJリスト</span></label>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+      <template x-for="(dj, index) in djs" :key="index">
+        <div class="join my-1 w-full">
+          <input type="text" name="djs" class="input input-bordered join-item w-full rounded-l-md" x-model="djs[index]" />
+          <button type="button" class="btn btn-neutral join-item" @click="djs.push('')"
+            x-show="index === djs.length - 1">＋</button>
+        </div>
+      </template>
+    </div>
+    <div class="form-control col-span-2" x-data="{ vjs: [''] }">
+      <label class="label"><span class="label-text">VJリスト</span></label>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+        <template x-for="(dj, index) in vjs" :key="index">
+          <div class="join my-1 w-full">
+            <input type="text" name="vjs" class="input input-bordered join-item w-full rounded-l-md" x-model="vjs[index]" />
+            <button type="button" class="btn btn-neutral join-item rounded-r-md" @click="vjs.push('')"
+              x-show="index === vjs.length - 1">＋</button>
+          </div>
+        </template>
+      </div>
+      <div class="form-control col-span-2">
+        <label class="label" for="host"><span class="label-text">主催</span></label>
+        <input type="text" id="host" name="host" class="input input-bordered rounded-l-md" />
+      </div>
+      <div class="col-span-2 flex justify-end">
+        <button type="submit" class="btn btn-primary">確認へ進む</button>
+      </div>
+</form>
+{% endblock %}

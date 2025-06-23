@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Event Tweeter{% endblock %}</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js CDN -->
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <!-- DaisyUI CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" type="text/css" />
+    <style>
+        :root[data-theme="dark"] {
+            --p: #fde047;
+            /* primary color: yellow-300 */
+            --pc: #1f2937;
+            /* gray-800 for contrast on yellow-300 */
+            --s: #2563eb;
+            /* secondary color: blue-600 */
+            --sc: #ffffff;
+            /* white for contrast on blue-600 */
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col bg-base-200">
+    <header class="navbar bg-base-100 shadow-md">
+        <div class="navbar-start">
+            <a href="/" class="btn btn-ghost normal-case text-xl">AniClub SuperStir 💫</a>
+        </div>
+    </header>
+
+    <main class="flex-1 container mx-auto p-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer p-4 bg-base-100 text-base-content border-t">
+        <div class="mx-auto">© 2025 AniClub SuperStir Muddler</div>
+    </footer>
+</body>
+
+</html>
