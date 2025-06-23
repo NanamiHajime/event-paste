@@ -1,15 +1,13 @@
-# AniClubSuperStir-Muddler
-
-アニクライベントの告知ツイートを簡単に作成し、複数ツイートに分割して投稿を支援するWebアプリケーションです。
+# event-paste
+Twitter上のイベントについての情報入力を支援するWebアプリケーションです。
 
 ## 目次
-- [AniClubSuperStir-Muddler](#aniclubsuperstir-muddler)
+- [event-paste](#event-paste)
   - [目次](#目次)
   - [必要条件](#必要条件)
   - [セットアップ](#セットアップ)
   - [実行方法](#実行方法)
   - [使用技術](#使用技術)
-  - [プロジェクト構成 (主要部分)](#プロジェクト構成-主要部分)
 
 ## 必要条件
 - Python 3.9 以降
@@ -46,16 +44,3 @@
 - Pydantic
 - Tailwind CSS
 - DaisyUI
-
-## プロジェクト構成 (主要部分)
-```
-AniClubSuperStir-Muddler/
-├── app/                # FastAPIアプリケーションのメインコード
-│   ├── main.py         # FastAPIアプリケーションインスタンスとグローバルルート
-│   ├── models/         # Pydanticモデル (データ構造定義)
-│   ├── routers/        # APIルーター (各エンドポイントの処理)
-│   ├── services/       # ビジネスロジック (例: ツイート分割処理)
-│   └── templates/      # Jinja2 HTMLテンプレート
-├── requirements.txt    # Pythonの依存パッケージリスト 
-└── README.md           # このファイル
-```
