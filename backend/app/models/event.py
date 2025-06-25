@@ -31,7 +31,7 @@ class Event(BaseModel):
     def validate_hashtag(cls, value):
         if "#" in value or "＃" in value:
             raise ValueError(
-                "ハッシュタグはフォーマット時結合するので'#'や'＃'を含めないでください"
+                "'#'や'＃'はハッシュタグの先頭に自動的に追加されます。"
             )
         return value
 
@@ -40,6 +40,13 @@ class Event(BaseModel):
     def _disallow_newline(cls, value: str) -> str:
         if "\n" in value or "\r" in value:
             raise ValueError("改行はできません")
+        return value
+    
+    @field_validator("djs", "vjs")
+    def _disallow_list_newline(cls, value: list[str]) -> list[str]:
+        for item in value:
+            if "\n" in item or "\r" in item:
+                raise ValueError("改行はできません")
         return value
 
     def _to_tweet_text(self) -> dict:

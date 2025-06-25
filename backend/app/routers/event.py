@@ -5,10 +5,8 @@ from fastapi import APIRouter, Form, Request, Depends
 from fastapi.responses import RedirectResponse, HTMLResponse
 from urllib.parse import quote_plus
 
-# from app.models.event import Event
-# from app.services.tweet_formatter import _format_to_tweet
-from ..models.event import Event
-from ..services.tweet_formatter import _format_to_tweet
+from backend.app.models.event import Event
+from backend.app.services.tweet_formatter import _format_to_tweet
 
 # FastAPIのForm依存をAnnotatedで定義
 def get_event(
@@ -55,7 +53,6 @@ async def show_register_form(request: Request):
 
 @router.post("/", response_class=HTMLResponse)
 async def register_event(request: Request, event: Event = Depends(get_event)):
-    # ツイートのテキストを投稿する分ごとに分割
     formatted_tweet = _format_to_tweet(event)
     url = f"https://twitter.com/intent/tweet?text={quote_plus(formatted_tweet)}"
 
