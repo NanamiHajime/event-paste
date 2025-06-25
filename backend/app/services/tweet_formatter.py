@@ -8,7 +8,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(BASE_DIR))
 
-from ..models.event import Event
+from backend.app.models.event import Event
 
 _ASCII = re.compile(r"^[\x00-\x7F]$")
 _URL = re.compile(r"https?://\S+")
@@ -64,5 +64,4 @@ def _format_to_tweet(event: Event) -> str:
     if event.host:
         lines.append(f"👤 主催: {event.host}")
 
-    print("整形後のツイート内容:", "\n".join(lines))  # デバッグ用
     return "\n".join(lines)

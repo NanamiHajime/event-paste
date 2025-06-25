@@ -5,10 +5,8 @@ from fastapi import APIRouter, Form, Request, Depends
 from fastapi.responses import RedirectResponse, HTMLResponse
 from urllib.parse import quote_plus
 
-# from app.models.event import Event
-# from app.services.tweet_formatter import _format_to_tweet
-from ..models.event import Event
-from ..services.tweet_formatter import _format_to_tweet
+from backend.app.models.event import Event
+from backend.app.services.tweet_formatter import _format_to_tweet
 
 # FastAPIのForm依存をAnnotatedで定義
 def get_event(

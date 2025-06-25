@@ -8,8 +8,8 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(BASE_DIR))
 
-from app.models.event import Event
-from app.services.tweet_formatter import (
+from backend.app.models.event import Event
+from backend.app.services.tweet_formatter import (
     _count_tweet_text_length,
     MAX_TWEET_LENGTH,
 )
@@ -88,7 +88,6 @@ def test_split_for_twitter_disallow_types_check(disallow_input_type):
 def test_price_limits_valid(field, valid_int, event_data):
     """価格の文字数制限の境界値テスト(valid)"""
     event_data[field] = valid_int
-    print(event_data)
     _split_for_twitter(event_data)
 
 
