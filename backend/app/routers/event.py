@@ -53,7 +53,6 @@ async def show_register_form(request: Request):
 
 @router.post("/", response_class=HTMLResponse)
 async def register_event(request: Request, event: Event = Depends(get_event)):
-    # ツイートのテキストを投稿する分ごとに分割
     formatted_tweet = _format_to_tweet(event)
     url = f"https://twitter.com/intent/tweet?text={quote_plus(formatted_tweet)}"
 

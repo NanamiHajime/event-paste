@@ -3,11 +3,6 @@ import sys
 import pytest
 from pydantic import ValidationError
 
-from pathlib import Path
-
-BASE_DIR = Path(__file__).resolve().parents[3]
-sys.path.insert(0, str(BASE_DIR))
-
 from backend.app.models.event import Event
 
 BASE_EVENT_DATA = {
