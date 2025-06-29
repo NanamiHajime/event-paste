@@ -1,6 +1,4 @@
-import json
-from typing import Annotated
-from datetime import date, time
+from typing import Optional
 from fastapi import APIRouter, Form, Request, Depends
 from fastapi.responses import RedirectResponse, HTMLResponse
 from urllib.parse import quote_plus
@@ -8,20 +6,19 @@ from urllib.parse import quote_plus
 from backend.app.models.event import Event
 from backend.app.services.tweet_formatter import _format_to_tweet
 
-# FastAPIのForm依存をAnnotatedで定義
 def get_event(
-    name: Annotated[str, Form(...)],
-    start_date: Annotated[date, Form(...)],
-    start_at: Annotated[time, Form(...)],
-    price: Annotated[str, Form(...)],
-    venue: Annotated[str, Form(...)],
-    address: Annotated[str, Form(...)],
-    hashtag: Annotated[str, Form(...)],
-    description: Annotated[str, Form(...)],
-    djs: Annotated[list[str], Form(...)],
-    vjs: Annotated[list[str], Form(...)],
-    host: Annotated[str, Form(...)],
-    with_1d: Annotated[bool, Form()] = False,
+    name: Optional[str] = Form(None),
+    price: Optional[str] = Form(None),
+    venue: Optional[str] = Form(None),
+    address: Optional[str] = Form(None),
+    hashtag: Optional[str] = Form(None),
+    description: Optional[str] = Form(None),
+    djs: Optional[list[str]] = Form(None),
+    vjs: Optional[list[str]] = Form(None),
+    host: Optional[str] = Form(None),
+    start_date: Optional[str] = Form(None),
+    start_at: Optional[str] = Form(None),
+    with_1d: Optional[bool] = Form(None),
 ) -> Event:
     """FormからEventオブジェクトへ変換"""
     return Event(

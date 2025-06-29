@@ -1,8 +1,4 @@
 from __future__ import annotations
-
-import re
-import sys
-
 from backend.app.models.event import Event
 
 
@@ -23,14 +19,16 @@ def _format_to_tweet(event: Event) -> str:
         lines.append(f"#{event.hashtag}")
     if event.description:
         lines.append(f"📝 内容: {event.description}")
-    if event.djs:
+    if event.djs and any(dj.strip() for dj in event.djs):
         lines.append("🎧️DJ")
-        for _, dj in enumerate(event.djs):
-            lines.append(f"{dj}")
-    if event.vjs:
+        for dj in event.djs:
+            if dj.strip():
+                lines.append(f"{dj}")
+    if event.vjs and any(vj.strip() for vj in event.vjs):
         lines.append("📺️VJ")
-        for _, vj in enumerate(event.vjs):
-            lines.append(f"{vj}")
+        for vj in event.vjs:
+            if vj.strip():
+                lines.append(f"{vj}")
     if event.host:
         lines.append(f"👤 主催: {event.host}")
 

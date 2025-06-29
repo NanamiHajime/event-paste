@@ -1,5 +1,3 @@
-import os
-import sys
 import pytest
 from pydantic import ValidationError
 
@@ -45,7 +43,7 @@ def test_disallow_newline(disallow_newline, event_data):
     """改行が含むことを許可しない"""
     test_data = event_data[disallow_newline]
     event_data[disallow_newline] = test_data[0] + "\n" + test_data[1:]
-    with pytest.raises(ValidationError, match=f"改行はできません"):
+    with pytest.raises(ValidationError, match="改行はできません"):
         Event(**event_data)
 
 
@@ -60,7 +58,7 @@ def test_disallow_list_newline(list_disallow_newline, event_data):
     """リストの要素ごとに改行を含むことを許可しない"""
     original_data = event_data[list_disallow_newline][0]
     event_data[list_disallow_newline][0] = original_data + "\n"
-    with pytest.raises(ValidationError, match=f"改行はできません"):
+    with pytest.raises(ValidationError, match="改行はできません"):
         Event(**event_data)
 
 
